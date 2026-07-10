@@ -1,0 +1,18 @@
+<h2>Add New Book</h2>
+
+<label>Enter Book Name :</label>
+<input [(ngModel)]="book.title" placeholder="Enter Book name" />
+<br><br>
+<label>Enter Book Author Name :</label>
+<input [(ngModel)]="book.author" placeholder="Enter Book Author name" />
+<br><br>
+<Label>Enter Book Price :</Label>
+<input [(ngModel)]="book.price" type="number" placeholder="Enter Book Price" />
+<br><br>
+<button (click)="save()">
+    Add Book
+</button>
+<hr>
+<div *ngIf="successMessage" style="color: green;">
+    {{ successMessage }}
+</div>

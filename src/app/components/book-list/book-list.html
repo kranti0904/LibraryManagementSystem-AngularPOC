@@ -1,0 +1,35 @@
+<img [src]="'Books.png'" width="80" >
+<hr>
+<label>Search Book :</label>
+<input type="text" [(ngModel)]="searchText" placeholder="Search" />
+<hr>
+
+<h3>Total Books: {{ books.length }}</h3>
+<div *ngIf="errorMessage" style="color: red; padding: 10px; border: 1px solid red; margin-bottom: 10px;">
+    {{ errorMessage }}
+</div>
+<table border="1">
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let book of getFilteredBook()">
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.price | currency:'INR' }}</td>
+        
+        <td>
+            <span *ngIf="book.available">Available</span>
+            <span *ngIf="!book.available">Issued</span>
+        </td>
+        <td>
+        <button (click)="deleteBook(book.id)">
+            Delete
+        </button>
+        </td>
+    </tr>
+</table>
+
