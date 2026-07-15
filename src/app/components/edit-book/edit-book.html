@@ -1,1 +1,52 @@
-<p>edit-book works!</p>
+<h2>Edit Book</h2>
+
+<div *ngIf="errorMessage" style="color: red;">
+    {{ errorMessage }}
+</div>
+
+<form #bookForm="ngForm" (ngSubmit)="update(bookForm)">
+
+<label>Enter Book Name :</label>
+<input type="text" name="title" [(ngModel)]="book.title" #title="ngModel" required placeholder="Enter Book name" />
+<div style="color: red" *ngIf="title.invalid && (title.touched || bookForm.submitted)">
+Book name is required.
+</div>
+
+<br><br>
+
+<label>Enter Book Author Name :</label>
+<input type="text" name="author" [(ngModel)]="book.author" #author="ngModel" required placeholder="Enter Book Author name" />
+<div style="color: red" *ngIf="author.invalid && (author.touched || bookForm.submitted)">
+Author name is required.
+</div>
+
+<br><br>
+
+<Label>Enter Book Price :</Label>
+<input type="number" name="price" [(ngModel)]="book.price" #price="ngModel" required min="1" placeholder="Enter Book Price" />
+<div style="color: red" *ngIf="price.invalid && (price.touched || bookForm.submitted)">
+    Price must be greater than 0.
+</div>
+<br><br>
+
+<label>Enter Book Category :</label>
+<input type="text" name="category" [(ngModel)]="book.category" #category="ngModel" required placeholder="Enter Book Category" />
+<div style="color: red" *ngIf="category.invalid && (category.touched || bookForm.submitted)">
+Category is required.
+</div>
+
+<br><br>
+
+<label>Available :</label>
+<input type="checkbox" name="available" [(ngModel)]="book.available" />
+
+<br><br>
+
+<button type="submit" [disabled]="bookForm.invalid">
+    Update Book
+</button>
+</form>
+<hr>
+<div *ngIf="successMessage" style="color: green;">
+    {{ successMessage }}
+</div>
