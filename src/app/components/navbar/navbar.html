@@ -1,7 +1,8 @@
-<nav>
-    <a routerLink="/">Home</a>
-    |
-    <a routerLink="/books">Books</a>
-    |
-    <a routerLink="/add-book">Add Book</a>
-</nav>
+<mat-toolbar color="primary">
+    <span>Library Management</span>
+    <!-- Spacer -->
+    <span style="flex: 1 1 auto;"></span>
+    <button mat-button routerLink="/">Home</button>
+    <button mat-button routerLink="/books">Books</button>
+    <button mat-raised-button color="accent" routerLink="/add-book" style="margin-left: 10px;">Add Book</button>
+</mat-toolbar>

@@ -1,18 +1,55 @@
-<h2>Add New Book</h2>
+<mat-card style="max-width: 500px; margin: 2rem auto; padding: 1rem;">
+  <mat-card-header>
+    <mat-card-title><h2>Add New Book</h2></mat-card-title>
+  </mat-card-header>
 
-<label>Enter Book Name :</label>
-<input [(ngModel)]="book.title" placeholder="Enter Book name" />
-<br><br>
-<label>Enter Book Author Name :</label>
-<input [(ngModel)]="book.author" placeholder="Enter Book Author name" />
-<br><br>
-<Label>Enter Book Price :</Label>
-<input [(ngModel)]="book.price" type="number" placeholder="Enter Book Price" />
-<br><br>
-<button (click)="save()">
-    Add Book
-</button>
-<hr>
-<div *ngIf="successMessage" style="color: green;">
+  <mat-card-content>
+    <form #bookForm="ngForm" (ngSubmit)="save(bookForm)" style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+      
+      <!-- Book Title -->
+      <mat-form-field appearance="outline">
+        <mat-label>Book Name</mat-label>
+        <input matInput type="text" name="title" [(ngModel)]="book.title" #title="ngModel" required placeholder="Enter Book name" />
+        <mat-error *ngIf="title.invalid && (title.touched || bookForm.submitted)">
+          Book name is required.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Author -->
+      <mat-form-field appearance="outline">
+        <mat-label>Author Name</mat-label>
+        <input matInput type="text" name="author" [(ngModel)]="book.author" #author="ngModel" required placeholder="Enter Book Author name" />
+        <mat-error *ngIf="author.invalid && (author.touched || bookForm.submitted)">
+          Author name is required.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Price -->
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" name="price" [(ngModel)]="book.price" #price="ngModel" required min="1" placeholder="Enter Book Price" />
+        <mat-error *ngIf="price.invalid && (price.touched || bookForm.submitted)">
+          Price must be greater than 0.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Category -->
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <input matInput type="text" name="category" [(ngModel)]="book.category" #category="ngModel" required placeholder="Enter Book Category" />
+        <mat-error *ngIf="category.invalid && (category.touched || bookForm.submitted)">
+          Category is required.
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="bookForm.invalid" style="padding: 10px;">
+        Add Book
+      </button>
+
+    </form>
+  </mat-card-content>
+
+  <mat-card-footer *ngIf="successMessage" style="padding: 16px; color: green; font-weight: bold; text-align: center;">
     {{ successMessage }}
-</div>
+  </mat-card-footer>
+</mat-card>
