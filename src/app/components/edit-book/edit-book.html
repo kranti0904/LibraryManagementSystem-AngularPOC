@@ -31,7 +31,7 @@
              <!-- Price -->
              <mat-form-field appearance="outline">
                 <mat-label>Price</mat-label>
-                <input matInput type="number" name="author" [(ngModel)]="book.price" #price="ngModel" required placeholder="Enter Book Author Name" />
+                <input matInput type="number" name="price" [(ngModel)]="book.price" #price="ngModel" required placeholder="Enter Book Author Name" />
                 <mat-error *ngIf="author.invalid && (author.touched || bookForm.submitted)">
                     Author name is required.
                 </mat-error>
